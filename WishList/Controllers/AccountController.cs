@@ -21,65 +21,65 @@ namespace WishList.Controllers
             _signInManager = signInManager;
          }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Register()
-        {
-          return View(); 
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public IActionResult Register()
+        //{
+        //  return View(); 
+        //}
 
-        [HttpPost]
-        [AllowAnonymous]
-        public IActionResult Register(RegisterViewModel model)
-        {
-            if(!ModelState.IsValid)
-                return View(model);
-            var result = _userManager.CreateAsync(new ApplicationUser() { Email = model.Email, UserName = model.UserName });
-            if(!result.Succeeded)
-            {
-                foreach(var error in result.Errors)
-                {
-                    ModelState.AddModelError("Password", error.Description);
-                }
-                return View(model);
+        //[HttpPost]
+        //[AllowAnonymous]
+        //public IActionResult Register(RegisterViewModel model)
+        //{
+        //    if(!ModelState.IsValid)
+        //        return View(model);
+        //    var result = _userManager.CreateAsync(new ApplicationUser() { Email = model.Email, UserName = model.UserName });
+        //    if(!result.Succeeded)
+        //    {
+        //        foreach(var error in result.Errors)
+        //        {
+        //            ModelState.AddModelError("Password", error.Description);
+        //        }
+        //        return View(model);
                 
-            }
-            return RedirectToAction("Index", "Home");
-        }
+        //    }
+        //    return RedirectToAction("Index", "Home");
+        //}
 
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Login()
-        {
-            return View();
-        }
+        //[HttpGet]
+        //[AllowAnonymous]
+        //public IActionResult Login()
+        //{
+        //    return View();
+        //}
 
-        [HttpPost]
-        [AllowAnonymous]
-        [ValidateAntiForgeryToken]
-        public IActionResult Login(LoginViewModel model)
-        {
-            if (!ModelState.IsValid)
-                return View(model);
-            var result = _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false).Result;
-            if (!result.Succeeded)
-            {
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Login(LoginViewModel model)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View(model);
+        //    var result = _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false).Result;
+        //    if (!result.Succeeded)
+        //    {
                
-                    ModelState.AddModelError(String.Empty, "Invalid Login attempt.");
+        //            ModelState.AddModelError(String.Empty, "Invalid Login attempt.");
                
-                return View(model);
+        //        return View(model);
 
-            }
-            return RedirectToAction("Index", "Item");
-        }
+        //    }
+        //    return RedirectToAction("Index", "Item");
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Logout()
-        {
-            _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Logout()
+        //{
+        //    _signInManager.SignOutAsync();
+        //    return RedirectToAction("Index", "Home");
+        //}
 
     }
 }
